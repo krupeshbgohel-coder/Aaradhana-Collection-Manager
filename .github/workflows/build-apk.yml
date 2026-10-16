@@ -1,3 +1,4 @@
+
 name: Build Aaradhana APK
 
 on:
@@ -8,30 +9,40 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Extract Android project
         run: |
-          unzip Aaradhana_Collection_Manager_GitHub_Fixed.zip -d .
+          unzip -o Aaradhana_Collection_Manager_GitHub_Fixed.zip -d .
 
-      - uses: actions/setup-java@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
-
-      - name: Install Android SDK
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
-
-      - uses: gradle/actions/setup-gradle@v4
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
+          accept-android-sdk-licenses: true
 
       - name: Build APK
         working-directory: AaradhanaCollectionManager
-        run: gradle assembleDebug
+        run: |
+          chmod +x gradlew 2>/dev/null || true
+          if [ -f gradlew ]; then
+            ./gradlew assembleDebug
+          else
+            gradle assembleDebug
+          fi
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload APK
+        if: success()
+        uses: actions/upload-artifact@v4
         with:
           name: Aaradhana-Collection-Manager-debug
           path: AaradhanaCollectionManager/app/build/outputs/apk/debug/app-debug.apk
