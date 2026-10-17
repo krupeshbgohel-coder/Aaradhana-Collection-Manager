@@ -16,7 +16,7 @@ jobs:
 
       - name: Extract Android project
         run: |
-          unzip -o AaradhanaCollectionManager.zip -d .
+          unzip -o AaradhanaCollectionManagerMobile.zip -d .
 
       - name: Set up Java
         uses: actions/setup-java@v4
