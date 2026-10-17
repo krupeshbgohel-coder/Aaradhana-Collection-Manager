@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "988274614845",
+    "project_id": "shree-aaradhana-manager",
+    "storage_bucket": "shree-aaradhana-manager.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988274614845:android:ea377ec1acc3e074180054",
+        "android_client_info": {
+          "package_name": "com.aaradhana.collectionmanager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw3YIy0FzM_eSpjSJVOGvbBfrIUddfm04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
